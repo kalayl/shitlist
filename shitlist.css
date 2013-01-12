@@ -1,1 +1,44 @@
 /* CSS declarations go here */
+
+.shading-1 {
+    background-color: #deb887;
+}
+
+.shading-2 {
+    background-color: #B67721;
+}
+
+.shading-3 {
+    background-color: #7F5417;
+}
+
+
+.shading-4 {
+    background-color: #593E1A;
+}
+
+.shading-5 {
+    background-color: #453823;
+}
+
+.leaderboard {
+    text-align: center;
+    /*border: 1px solid black;*/
+}
+
+.offenders {
+    text-align: left;
+    /*border: 1px solid black;*/
+}
+
+.offence {
+    /*border: 1px solid black;*/
+}
+
+.severity {
+    /*border: 1px solid black;*/
+}
+
+.offender-details {
+    /*border: 1px solid black;*/
+}
