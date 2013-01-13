@@ -7,15 +7,16 @@
 </body>
 
 <template name="main">
-    <h1>sh.itli.st</h1>
-    {{greeting}}
-    <br/>
+    <h1>sh.itli.st/{{shitlist}}</h1>
     {{> leaderboard}}
 </template>
 
 <template name="leaderboard">
     <div class="leaderboard">
-        <input type="text" id="offender"><input type="button" id="add-new-offence" value="add">
+        <div class="add-wrapper">
+            <input type="text" id="offender">
+            <!--<input type="button" id="add-new-offence" value="add">-->
+        </div>
         <div class="offenders">
             {{#each offences}}
                 {{> offence}}
@@ -25,21 +26,36 @@
 </template>
 
 <template name="offence">
-    <div class="offence">
-        <div class="severity">
-            <span class="decrease-severity"><input type="button" id="decrease-severity" value="-"></span>
-            <span class="shading-{{severity}}">&nbsp;&nbsp;{{severity}}&nbsp;&nbsp;</span>
-            <span class="increase-severity"><input type="button" id="increase-severity" value="+"></span>
-            <span class="offender">{{offender}}</span>
-        </div>
-        <div class="offender-details">
-            {{#if selected}}
-                <span class="offenceDate">{{offenceDate}}</span>
-                <span class="reason">{{reason}}</span>
-                <span class="revenge">{{revenge}}</span>
-                <span class="done">{{done}}</span>
-                <span class="remove"><input type="button" id="remove-offence" value="remove"></span>
-            {{/if}}
+    <div class="offence-wrapper">
+        <div class="offence shading-{{severity}}">
+            <!--<div class="severity">-->
+                <!--<span class="decrease-severity"><input type="button" id="decrease-severity" value="-"></span>-->
+                <!--<span class="shading-{{severity}}">&nbsp;&nbsp;{{severity}}&nbsp;&nbsp;</span>-->
+                <!--<span class="increase-severity"><input type="button" id="increase-severity" value="+"></span>-->
+            <!--</div>-->
+            <div class="offender-details">
+                <div class="offender"><span class="title">OFFENDER:</span> {{offender}}</div>
+
+                <div>
+                <div class="reason"><span class="title">OFFENCE:</span> {{reason}}</div>
+                {{!#if hasOffenceDate}}
+                    <div class="offenceDate"><span class="title">WHEN:</span> {{formattedOffenceDate}}</div>
+                {{!/if}}
+                </div>
+                <div class="clear"></div>
+                <div class="revenge"><span class="title">REVENGE:</span> {{revenge}}</div>
+                <div class="severity">
+                    <span class="title">SEVERITY:</span>
+                    <span class="decrease-severity"><input type="button" id="decrease-severity" value="-"></span>
+                    <span class="shading-{{severity}}">{{severity}}</span>
+                    <span class="increase-severity"><input type="button" id="increase-severity" value="+"></span>
+                </div>
+                <div class="remove">
+                    <input type="button" id="remove-offence" value="remove">
+                </div>
+                <div class="clear"></div>
+                <!--<span class="done">{{done}}</span>-->
+            </div>
         </div>
     </div>
 </template>

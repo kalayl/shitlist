@@ -1,5 +1,25 @@
 /* CSS declarations go here */
 
+body {
+    border: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #baa378;
+}
+
+body, input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.clear {
+    clear: both;
+}
+
+h1 {
+    color: #7F5417;
+}
+
 .shading-1 {
     background-color: #deb887;
 }
@@ -31,14 +51,61 @@
     /*border: 1px solid black;*/
 }
 
+.offence-wrapper {
+    padding: 3px;
+}
+
+.title {
+    font-weight: bold;
+    color: #ffffff;
+    width: 500px;
+}
+
+.add-wrapper {
+    width: 500px;
+    padding: 5px 10px;
+    /*border: 1px solid black;*/
+}
+
+.add-wrapper input[type="text"] {
+    width: 100%;
+}
+
 .offence {
+    border-radius: 15px;
+    width: 500px;
+    /*border: 1px solid black;*/
+    padding: 5px 10px;
+}
+
+.offender-details {
+    /*border: 1px solid black;*/
+    color: #ffffff;
+}
+
+.offender {
+    /*border: 1px solid black;*/
+}
+
+.reason {
+    /*border: 1px solid black;*/
+    float: left;
+}
+
+.offenceDate {
+    /*border: 1px solid black;*/
+    float: right;
+}
+
+.revenge {
     /*border: 1px solid black;*/
 }
 
 .severity {
     /*border: 1px solid black;*/
+    float: left;
 }
 
-.offender-details {
-    /*border: 1px solid black;*/
+.remove {
+    float: right;
 }
