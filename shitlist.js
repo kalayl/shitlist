@@ -1,8 +1,7 @@
-'click .add-new-offender';
 Offences = new Meteor.Collection("offences");
 
 if (Meteor.isClient) {
-    Template.main.shitlist = function () {
+    Template.leaderboard.shitlist = function () {
         return this.window.location.pathname.substr(1);
     };
 

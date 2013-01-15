@@ -7,55 +7,82 @@
 </body>
 
 <template name="main">
-    <h1>sh.itli.st/{{shitlist}}</h1>
     {{> leaderboard}}
 </template>
 
 <template name="leaderboard">
-    <div class="leaderboard">
-        <div class="add-wrapper">
-            <input type="text" id="offender">
-            <!--<input type="button" id="add-new-offence" value="add">-->
+        <!--<input type="text" id="offender">-->
+    <div class="container">
+        <div class="row">
+            <div class="span12 title">
+                <h1>sh.itli.st/{{shitlist}}</h1>
+            </div>
         </div>
-        <div class="offenders">
+
+        <div class="row">
+            <div class="span6 offset3 title">
+                <input id="offender" type="text" class="input-xlarge" placeholder="Name your offender">
+            </div>
+        </div>
+
             {{#each offences}}
                 {{> offence}}
             {{/each}}
-        </div>
     </div>
 </template>
 
 <template name="offence">
-    <div class="offence-wrapper">
-        <div class="offence shading-{{severity}}">
-            <!--<div class="severity">-->
-                <!--<span class="decrease-severity"><input type="button" id="decrease-severity" value="-"></span>-->
-                <!--<span class="shading-{{severity}}">&nbsp;&nbsp;{{severity}}&nbsp;&nbsp;</span>-->
-                <!--<span class="increase-severity"><input type="button" id="increase-severity" value="+"></span>-->
-            <!--</div>-->
-            <div class="offender-details">
-                <div class="offender"><span class="title">OFFENDER:</span> {{offender}}</div>
 
-                <div>
-                <div class="reason"><span class="title">OFFENCE:</span> {{reason}}</div>
-                {{!#if hasOffenceDate}}
-                    <div class="offenceDate"><span class="title">WHEN:</span> {{formattedOffenceDate}}</div>
-                {{!/if}}
+<div class="row">
+    <div class="offset3 span6">
+        <div class="container well span6">
+            <div class="row rowsplitter">
+                <div class="span1">
+                    <div class="btn-group btn-group-vertical" data-toggle="buttons-radio">
+                        <button class="btn btn-mini btn-inverse">5</button>
+                        <button class="btn btn-mini btn-success">4</button>
+                        <button class="btn btn-mini btn-warning">3</button>
+                        <button class="btn btn-mini btn-severity-2">2</button>
+                        <button class="btn btn-mini btn-primary">1</button>
+                    </div>
                 </div>
-                <div class="clear"></div>
-                <div class="revenge"><span class="title">REVENGE:</span> {{revenge}}</div>
-                <div class="severity">
-                    <span class="title">SEVERITY:</span>
-                    <span class="decrease-severity"><input type="button" id="decrease-severity" value="-"></span>
-                    <span class="shading-{{severity}}">{{severity}}</span>
-                    <span class="increase-severity"><input type="button" id="increase-severity" value="+"></span>
+
+                <div class="span5">
+                    <div class="row">
+                        <div class="span1"><strong>offender</strong></div>
+                        <div class="span4">{{offender}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><strong>offence</strong></div>
+                        <div class="span4">{{reason}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><strong>reason</strong></div>
+                        <div class="span4">{{reason}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span1"><strong>revenge</strong></div>
+                        <div class="span4">{{revenge}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span2">
+                            <label class="checkbox">
+                                <input type="checkbox"> Offender handled
+                            </label>
+                        </div>
+                        <div class="span1">
+                            <button id="remove-offence" class="btn btn-small">remove</button>
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+
+                    </div>
                 </div>
-                <div class="remove">
-                    <input type="button" id="remove-offence" value="remove">
-                </div>
-                <div class="clear"></div>
-                <!--<span class="done">{{done}}</span>-->
             </div>
         </div>
     </div>
+</div>
+
+
 </template>
