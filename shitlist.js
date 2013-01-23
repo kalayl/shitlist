@@ -16,6 +16,8 @@ if (Meteor.isClient) {
                 var shitlist = this.window.location.pathname.substr(1);
                 var offenceId = Offences.insert({
                     shitlist: shitlist,
+                    reason: 'your reason',
+                    revenge: 'your revenge',
                     offender: this.offender.value,
                     offenceDate: new Date(),
                     severity: 5,
@@ -33,6 +35,10 @@ if (Meteor.isClient) {
         return Session.equals("selected_offender", this._id);
     };
 
+    Template.offence.offenceHandled = function () {
+        return this.done ? "checked" : "";
+    }
+
     Template.offence.hasOffenceDate = function () {
         return this.offenceDate;
     }
@@ -41,18 +47,73 @@ if (Meteor.isClient) {
         return (this.offenceDate ? new Date(this.offenceDate).toDateString() : "");
     };
 
+    var startEdit = function (template, field) {
+        console.log('startedit');
+
+        var editableField = template.find('.' + field + '-editable');
+        var readonlyField = template.find('.' + field + '-readonly');
+        console.log(editableField);
+        console.log(readonlyField);
+
+        $(readonlyField).addClass('hidden');
+        $(editableField).removeClass('hidden');
+        $(editableField).focus().val(template.data[field]);
+    };
+
+    var endEdit = function (template, field) {
+        console.log('endedit ');
+
+        var editableField = template.find('.' + field + '-editable');
+        var readonlyField = template.find('.' + field + '-readonly');
+
+        var newValue = editableField.value;
+        var setModifier = { $set : {} };
+        setModifier.$set[field] = newValue;
+
+        Offences.update({ _id : template.data._id}, setModifier);
+        $(editableField).addClass('hidden');
+        $(readonlyField).removeClass('hidden');
+    };
+
+    var readOnlyFieldName = function (event) {
+        return findPrefixInClassName(event, '-readonly');
+    };
+
+    var editableFieldName = function (event) {
+        return findPrefixInClassName(event, '-editable');
+    };
+
+    var findPrefixInClassName = function (event, value) {
+        var classList = $(event.srcElement).attr('class').split(/\s+/);
+        var result = "";
+        $.each(classList, function (index, item, cb) {
+            var index = item.indexOf(value);
+            if (index > -1) {
+                result = item.substr(0, index);
+            }
+        });
+        return result;
+    };
+
     Template.offence.events({
-        'click .offender': function (event, template) {
-            Session.set("selected_offender", this._id);
+        'click .readonly': function (event, template) {
+            startEdit(template, readOnlyFieldName(event));
         },
+        'blur .editable': function (event, template) {
+            endEdit(template, editableFieldName(event));
+        },
+
         'click #remove-offence': function (event, template) {
             Offences.remove(template.data._id);
         },
         'click #decrease-severity': function (event, template) {
-            Offences.update({ _id: template.data._id, severity: { $gt: 1} }, { $inc: { severity: -1 }}, { multi: false })
+            Offences.update({ _id: template.data._id, severity: { $gt: 1} }, { $inc: { severity: -1 }}, { multi: false });
         },
         'click #increase-severity': function (event, template) {
-            Offences.update({ _id: template.data._id, severity: { $lt: 5} }, { $inc: { severity: 1 }}, { multi: false })
+            Offences.update({ _id: template.data._id, severity: { $lt: 5} }, { $inc: { severity: 1 }}, { multi: false });
+        },
+        'click #offender-handled': function (event, template) {
+            Offences.update({ _id: template.data._id}, { $set: { done: !template.data.done } }, { multi: false });
         }
     });
 }

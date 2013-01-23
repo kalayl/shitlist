@@ -35,39 +35,46 @@
 
 <div class="row">
     <div class="offset3 span6">
-        <div class="container well span6">
+        <div class="container well span6 shading-{{severity}}">
             <div class="row rowsplitter">
                 <div class="span1">
-                    <div class="btn-group btn-group-vertical" data-toggle="buttons-radio">
-                        <button class="btn btn-mini btn-inverse">5</button>
-                        <button class="btn btn-mini btn-success">4</button>
-                        <button class="btn btn-mini btn-warning">3</button>
-                        <button class="btn btn-mini btn-severity-2">2</button>
-                        <button class="btn btn-mini btn-primary">1</button>
-                    </div>
+                    <!--<div class="btn-group btn-group-vertical" data-toggle="buttons-radio">-->
+                        <!--<button class="btn btn-mini btn-severity-5" data-toggle="button">5</button>-->
+                        <!--<button class="btn btn-mini btn-severity-4" data-toggle="button">4</button>-->
+                        <!--<button class="btn btn-mini btn-severity-3" data-toggle="button">3</button>-->
+                        <!--<button class="btn btn-mini btn-severity-2" data-toggle="button">2</button>-->
+                        <!--<button class="btn btn-mini btn-severity-1" data-toggle="button">1</button>-->
+                    <!--</div>-->
+                    &nbsp;
                 </div>
 
                 <div class="span5">
                     <div class="row">
-                        <div class="span1"><strong>offender</strong></div>
-                        <div class="span4">{{offender}}</div>
+                        <div class="span5">
+                            <h3>
+                                <span class="offender-readonly readonly">{{offender}}</span>
+                                <input class="offender-editable editable hidden" type="text" value="{{offender}}" />
+                            </h3>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="reason">
                         <div class="span1"><strong>offence</strong></div>
-                        <div class="span4">{{reason}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="span1"><strong>reason</strong></div>
-                        <div class="span4">{{reason}}</div>
+                        <div class="span4">
+                            <span class="reason-readonly readonly">{{reason}}</span>
+                            <input class="reason-editable editable hidden" type="text" value="{{reason}}" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="span1"><strong>revenge</strong></div>
-                        <div class="span4">{{revenge}}</div>
+                        <div class="span4">
+                            <span class="revenge-readonly readonly">{{revenge}}</span>
+                            <input class="revenge-editable editable hidden" type="text" value="{{revenge}}" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="span2">
                             <label class="checkbox">
-                                <input type="checkbox"> Offender handled
+                                <input type="checkbox" id="offender-handled" {{offenceHandled}}> Offender handled
                             </label>
                         </div>
                         <div class="span1">
