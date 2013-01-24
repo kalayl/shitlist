@@ -1,0 +1,46 @@
+<head>
+    <title>sh.itli.st</title>
+</head>
+
+<!--<body>-->
+<!--/{/{> index /} -}-->
+<!--</body>-->
+
+<template name="index">
+    <div class="container">
+        <div class="row">
+            <div class="span12 title">
+                <h1>sh.itli.st</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span6 offset3 title">
+                <input id="newShitlist" type="text" class="input-xlarge" placeholder="Get started. Name your new sh.itli.st name here">
+            </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        <div class="row">
+            <div class="span6 offset3 title">
+                Recently added sh.itli.st/s
+            </div>
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        {{#each shitlists}}
+        {{> shitlistItem}}
+        {{/each}}
+    </div>
+
+</template>
+
+<template name="shitlistItem">
+    <div class="row">
+        <div class="span6 offset3 title">
+            <a href="{{listUri}}">{{name}}</a>
+        </div>
+    </div>
+</template>
